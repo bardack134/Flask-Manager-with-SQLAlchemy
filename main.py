@@ -69,6 +69,7 @@ with app.app_context():
 book_id = 1
 with app.app_context():
     book_to_update = db.session.execute(db.select(Book).where(Book.id == book_id)).scalar()
+    # or book_to_update = db.get_or_404(Book, book_id) 
     book_to_update.title = "Harry Potter and the Goblet of Fire"
     db.session.commit()
 
@@ -76,6 +77,7 @@ with app.app_context():
 book_id = 1
 with app.app_context():
     book_to_delete = db.session.execute(db.select(Book).where(Book.id == book_id)).scalar()
+    # or book_to_delete = db.get_or_404(Book, book_id)
     db.session.delete(book_to_delete)
     db.session.commit()
 
